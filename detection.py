@@ -3,7 +3,7 @@ from ultralytics import YOLO
 import matplotlib.pyplot as plt
 
 
-model = YOLO('Resultss/Models/best.pt') 
+model = YOLO('Weapon-Detection-System-using-Deep-Learning-/Resultss/Models/best.pt') 
 
 
 cap = cv2.VideoCapture(0)  
@@ -36,8 +36,13 @@ while True:
     plt.draw()
     plt.pause(0.001)
 
-    if plt.waitforbuttonpress(timeout=0.001) and plt.get_current_fig_manager().canvas.keypress == 'q':
-        break
+    # if plt.waitforbuttonpress(timeout=0.001) and plt.get_current_fig_manager().canvas.key_press == 'q':
+    #     break
+    if plt.waitforbuttonpress(timeout=0.001):
+        event = plt.get_current_fig_manager().canvas.key_press_event
+        if event and event.key == 'q':
+            break
+
 
 plt.ioff()  
 cap.release()
